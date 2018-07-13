@@ -4,20 +4,24 @@ body {
   grid-template-rows: 40vh 60vh;
   justify-items: center;
   font-family: "Open Sans", sans-serif;
-
 }
-
-
 
 header {
   grid-row: 1;
   width: 100%;
+  background-color: #e5f3f2;
+  display: flex;
+  justify-content: center;
+}
+
+.add-idea {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   padding: 1rem;
-  background-color: #e5f3f2;
+  height: 100%;
+  /*width: 16rem;*/
 }
 
 h1 {
@@ -38,15 +42,17 @@ form {
 }
 
 input {
-	width: 100%;
+	width: 25rem;
 }
+
 ::placeholder {
 	font-family: "Open Sans", sans-serif;
-};
+}
 
 .submit {
 	background-color: #00a79d;
 	color: #ffffff;
+  width: 25rem;
 }
 
 .submit:hover {
@@ -58,23 +64,24 @@ main {
   grid-row: 2;
   display: flex;
   flex-direction: column;
-  /*justify-content: space-around;*/
+  align-items: center;
   padding: 1rem;
-
 }
 
 article {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 10rem;
+  width: 25rem;
 	border-bottom: 1px solid #d1d3d4;
-
 }
+
 .idea-title {
 	display: flex;
 	justify-content: space-between;
 	font-family: "Roboto Slab", serif;
+  color: #6d6e71;
 }
 
 input[type="image"] {
@@ -82,11 +89,19 @@ input[type="image"] {
 	height: 1rem;
 }
 
+p {
+  color: #939598;
+}
+
 .idea-vote {
 	display: flex;
-/*	justify-content: start;
-*/}
+}
 
 h4 {
 	font-family: "Roboto Slab", serif;
+  color: #6d6e71;
+}
+
+.idea-quality {
+  font-family: "Open Sans", sans-serif;
 }
