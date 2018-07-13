@@ -7,34 +7,51 @@
     <link rel="stylesheet" href="styles.css">
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:700"
-    >
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:700">
     <title>IdeaBox</title>
   </head>
   <body>
     <header>
-      <h1></h1>
+      <h1>idea<span>box</span></h1>
       <form>
-        <input type="" name="">
-        <input type="" name="">
-        <button></button>
+        <label for="idea title">
+          <input type="text" name="title" placeholder="Title">
+        </label>
+        <label for="idea description">
+          <input type="text" name="body" placeholder="Body">
+        </label>
+        <label for="Idea save">
+          <input type="submit" name="save"></input>
+        </label>
       </form>
     </header>
     <main>
-      <section> 
-      <input type="" name="">   
+      <label for="search">
+        <input type="text" name="search" placeholder="Search">
+      </label>
+      <section>
         <article>
           <div>
-            <h2></h2>
-              <button></button>
-            <p></p>
-              <button></button>
-              <button></button>
-              <h4></h4>
+            <h2>Example Idea 1</h2>
+            <button>
+              <img src="images/delete.svg" alt="delete button">
+            </button>
           </div>
+          <p>Tiramisu carrot cake fruitcake gingerbread bear claw powder icing tootsie roll ice cream.</p>
+          <button>
+            <img src="images/upvote.svg" alt="upvote button">
+          </button>
+          <button>
+            <img src="images/downvote.svg" alt="downvote button">
+          </button>
+          <h4>quality: swill</h4>
         </article>
       </section>
     </main>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"></script>
     <script src="script.js"></script>
   </body>
 </html>

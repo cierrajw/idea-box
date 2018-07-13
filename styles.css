@@ -1,0 +1,37 @@
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40vh 60vh;
+  justify-items: center;
+}
+
+header {
+  grid-row: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: #e5f3f2;
+}
+
+h1 {
+
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 40%;
+}
+
+main {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  /*justify-content: space-around;*/
+  padding: 1rem;
+}
