@@ -1,28 +1,34 @@
 body {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 40vh 60vh;
-  justify-items: center;
+  grid-template-rows: 46vh 54vh;
+  min-width: 20rem;
   font-family: "Open Sans", sans-serif;
-
 }
 
-
+/* Upper section */
 
 header {
-  grid-row: 1;
-  width: 100%;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  background-color: #e5f3f2;
+  display: flex;
+  justify-content: center;
+}
+
+.add-idea {
+  width: 59%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   padding: 1rem;
-  background-color: #e5f3f2;
 }
 
 h1 {
 	font-family: "Roboto Slab", serif;
 	color: #00a79d;
+  font-size: 3.4rem;
 }
 
 span {
@@ -34,19 +40,46 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 40%;
+  height: 57%;
+  width: 100%;
+}
+
+label {
+  width: 100%;
 }
 
 input {
-	width: 100%;
+  height: 2.5rem;
+  width: 100%;
+  border: 2px solid #939598;
+  padding-left: .6rem;
+  font-size: 1.5rem;
+  letter-spacing: .03rem;
 }
+
+textarea {
+  height: 2.5rem;
+  width: 100%;
+  border: 2px solid #939598;
+  padding: 0 0 .2rem .6rem;
+  font-size: 1.5rem;
+  letter-spacing: .03rem;
+  resize: none;
+}
+
 ::placeholder {
 	font-family: "Open Sans", sans-serif;
-};
+  color: #939598;
+}
 
 .submit {
+  height: 3rem;
+  width: 100%;
 	background-color: #00a79d;
 	color: #ffffff;
+  padding-bottom: .25rem;
+  font-size: 1.5rem;
+  letter-spacing: .05rem;
 }
 
 .submit:hover {
@@ -54,39 +87,229 @@ input {
 	color: #ffffff;
 }
 
+/* Lower Section */
+
 main {
-  grid-row: 2;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
   display: flex;
   flex-direction: column;
-  /*justify-content: space-around;*/
-  padding: 1rem;
+  align-items: center;
+}
 
+.idea-container {
+  width: 59%;
+  padding: 1rem;
+}
+
+input[name='search'] {
+  margin: .75rem 0 1.4rem;
 }
 
 article {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	height: 10rem;
-	border-bottom: 1px solid #d1d3d4;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1rem .25rem;
+	border-bottom: 2px solid #d1d3d4;
+  margin-bottom: .5rem;
 }
+
 .idea-title {
 	display: flex;
 	justify-content: space-between;
+  align-items: center;
 	font-family: "Roboto Slab", serif;
+  font-size: 1.7rem;
+  color: #6d6e71;
+  margin-bottom: .75rem;
 }
 
 input[type="image"] {
-	width: 1rem;
-	height: 1rem;
+	width: 1.9rem;
+	height: 1.9rem;
+  padding: 0;
+  border: 0;
+}
+
+p {
+  font-size: 1.3rem;
+  color: #939598;
+  line-height: 1.75rem;
+  margin-bottom: 1.5rem;
+  padding: 0 .1rem;
 }
 
 .idea-vote {
 	display: flex;
-/*	justify-content: start;
-*/}
+  justify-content: space-between;
+  align-items: center;
+  width: 13.6rem;
+  margin-bottom: .5rem;
+}
 
 h4 {
 	font-family: "Roboto Slab", serif;
+  font-size: 1.2rem;
+  color: #6d6e71;
 }
+
+.idea-quality {
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Media Queries */
+/* Phone */
+
+@media screen and (max-width: 500px) {
+  body {
+    grid-template-rows: 58vh 42vh;
+  }
+
+  .add-idea {
+    width: 89%;
+    padding: .3rem;
+  }
+
+  h1 {
+    font-size: 2.6rem;
+  }
+
+  form {
+    height: 73%;
+    padding-bottom: .3rem;
+  }
+
+  input {
+    height: 3rem;
+    border: 2px solid #939598;
+    padding: 0 0 .1rem .75rem;
+    font-size: 1.75rem;
+    letter-spacing: .02rem;
+  }
+
+  textarea {
+    height: 7.5rem;
+    font-size: 1.75rem;
+  }
+
+  .submit {
+    height: 3.5rem;
+    padding-bottom: .4rem;
+    font-size: 1.75rem;
+    letter-spacing: .1rem;
+  }
+
+  /* Lower Section */
+
+  .idea-container {
+    width: 89%;
+    padding: .3rem;
+  }
+
+  input[name='search'] {
+    margin: 1rem 0 2.2rem;
+  }
+
+  article {
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+  }
+
+  .idea-title {
+    margin-bottom: 1.25rem;
+    padding-right: .3rem;
+    font-size: 2rem;
+  }
+
+  input[type="image"] {
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 0;
+  }
+
+  p {
+    font-size: 1.54rem;
+    line-height: 1.9rem;
+    margin-bottom: 1.25rem;
+    /*padding: 0;*/
+  }
+
+  .idea-vote {
+    width: 14.75rem;
+    margin-bottom: .75rem;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+    margin-left: .5rem;
+  }
+}
+
+/*@media screen and (max-width: 675px) {
+  body {
+    grid-template-rows: 56.5vh 43.5vh;
+  }
+  .add-idea {
+    padding: .5rem;
+  }
+  h1 {
+    font-size: 3rem;
+  }
+  form {
+    height: 73%;
+    padding-bottom: .3rem;
+  }
+  input {
+    height: 3.25rem;
+    border: 2px solid #939598;
+    padding-left: .75rem;
+    font-size: 2rem;
+    letter-spacing: .02rem;
+  }
+  textarea {
+    height: 8.75rem;
+    font-size: 2rem;
+  }
+  .submit {
+    height: 4rem;
+    padding-bottom: .4rem;
+    font-size: 2rem;
+    letter-spacing: .1rem;
+  }
+   Lower Section
+  main {
+    padding: 1.75rem 2rem;
+  }
+  input[name='search'] {
+    margin-bottom: 2.9rem;
+  }
+  article {
+    padding: 1rem .1rem;
+    margin-bottom: 1rem;
+  }
+  .idea-title {
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem;
+  }
+  input[type="image"] {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 ;
+    border: 0;
+  }
+  p {
+    font-size: 1.75rem;
+    line-height: 2rem;
+    margin-bottom: 2rem;
+    padding: 0;
+  }
+  .idea-vote {
+    width: 15rem;
+    margin-bottom: 1rem;
+  }
+  h4 {
+    font-size: 1.3rem;
+  }
+}*/
