@@ -21,16 +21,16 @@ submit.on('click', function(e){
 	var titleData = titleInput.dataset.title;
 
 	return `This is the title: ${titleData}`;
-
 });
 
 
 function enableSave() {
-
   var isDisabled = (!titleInput || !bodyInput);
 
   submit.prop('disabled', isDisabled);
   return "It works";
 
 }
+
+
 
