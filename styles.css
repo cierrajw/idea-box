@@ -86,7 +86,12 @@ textarea {
 .submit:hover {
   background-color: #045e55;
   color: #ffffff;
+
 }
+.submit:focus{
+  outline: 0;
+}
+
 .submit:disabled{
   background-color: #939598;
   cursor: default;

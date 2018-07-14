@@ -17,6 +17,7 @@ submit.on('click', checkInputs);
 function enableSave() {
   var isDisabled = (!titleInput || !bodyInput);
   submit.prop('disabled', isDisabled);
+
 }
 
 function checkInputs(e) {
@@ -35,9 +36,17 @@ function makeCard() {
   var ideaTitle = titleInput.val();
   var ideaBody = bodyInput.val();
   populateIdea(ideaTitle, ideaBody);
+  clearInputs();
+  submit.prop('disabled', true);
 
 }
 
+function clearInputs(){
+  debugger;
+  titleInput.val("");
+  bodyInput.val("");
+
+}
 function populateIdea(ideaTitle, ideaBody) {
   var index = ideaCollection.length;
   var newArticle = `<article class="js-idea">
