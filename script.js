@@ -10,7 +10,20 @@ var ideaCollection = $('js-idea').toArray();
 titleInput.on('keyup', enableSave);
 bodyInput.on('keyup', enableSave);
 submit.on('click', checkInputs);
+ideaList.on('click', function(e){
 
+
+  if(e.target.className === 'delete-button'){
+    $(e.target).closest('article').remove();
+  }
+  else if(e.target.className === 'upvote-button'){
+    console.log('Upvote yayyyy');
+  }
+  else if(e.target.className === 'downvote-button'){
+    console.log('Downvote yayyyy');
+
+  }
+});
 // Functions
 // Header Section
 
@@ -39,10 +52,10 @@ function makeCard() {
   clearInputs();
   submit.prop('disabled', true);
 
+
 }
 
 function clearInputs(){
-  debugger;
   titleInput.val("");
   bodyInput.val("");
 
@@ -56,8 +69,8 @@ function populateIdea(ideaTitle, ideaBody) {
           </div>
           <p>${ideaBody}</p>
           <div class="idea-vote">
-            <button class="upvote-button" aria-label="upvote button"></button>
-            <button class="downvote-button" aria-label="downvote button"></button>
+            <button class="upvote-button js-upvote-button" aria-label="upvote button"></button>
+            <button class="downvote-button js-downvote-button" aria-label="downvote button"></button>
             <h4>quality<span class="idea-quality">: swill<span></h4>
           </div>
         </article>`;
