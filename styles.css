@@ -86,6 +86,9 @@ textarea {
 	background-color: #045e55;
 	color: #ffffff;
 }
+.submit:disabled{
+  background-color: #939598;
+}
 
 /* Lower Section */
 

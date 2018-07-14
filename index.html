@@ -16,19 +16,19 @@
         <h1>idea<span>box</span></h1>
         <form>
           <label for="idea title">
-            <input type="text" name="title" placeholder="Title">
+            <input type="text" class="js-title" data-title="title" placeholder="Title">
           </label>
           <label for="idea description">
-            <textarea type="text" wrap="soft" name="body" placeholder="Body"></textarea>
+            <textarea type="text" wrap="soft" class="js-body"  placeholder="Body"></textarea>
           </label>
-          <button class="submit" type="submit" name="save">save</button>
+          <button class="submit js-submit" type="submit" disabled>save</button>
         </form>
       </section>
     </header>
     <main>
       <section class="idea-container">
         <label for="search">
-          <input type="text" name="search" placeholder="Search">
+          <input type="text" class="js-search" placeholder="Search">
         </label>
         <article>
           <div class="idea-title">
