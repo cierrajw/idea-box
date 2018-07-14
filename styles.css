@@ -112,7 +112,7 @@ article {
   flex-direction: column;
   justify-content: space-around;
   padding: 1rem .25rem;
-	border-bottom: 1px solid #d1d3d4;
+	border-bottom: 2px solid #d1d3d4;
   margin-bottom: .5rem;
 }
 
@@ -164,15 +164,16 @@ h4 {
 
 @media screen and (max-width: 500px) {
   body {
-    grid-template-rows: 60vh 40vh;
+    grid-template-rows: 58vh 42vh;
   }
 
   .add-idea {
-    padding: .5rem;
+    width: 89%;
+    padding: .3rem;
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.6rem;
   }
 
   form {
@@ -181,70 +182,73 @@ h4 {
   }
 
   input {
-    height: 3.25rem;
+    height: 3rem;
     border: 2px solid #939598;
-    padding-left: .75rem;
-    font-size: 2rem;
+    padding: 0 0 .1rem .75rem;
+    font-size: 1.75rem;
     letter-spacing: .02rem;
   }
 
   textarea {
-    height: 8.75rem;
-    font-size: 2rem;
+    height: 7.5rem;
+    font-size: 1.75rem;
   }
 
   .submit {
-    height: 4rem;
+    height: 3.5rem;
     padding-bottom: .4rem;
-    font-size: 2rem;
+    font-size: 1.75rem;
     letter-spacing: .1rem;
   }
 
   /* Lower Section */
 
-  main {
-    padding: 1.75rem 2rem;
+  .idea-container {
+    width: 89%;
+    padding: .3rem;
   }
 
   input[name='search'] {
-    margin-bottom: 2.9rem;
+    margin: 1rem 0 2.2rem;
   }
 
   article {
-    padding: 1rem .1rem;
+    padding: 1rem 0;
     margin-bottom: 1rem;
   }
 
   .idea-title {
-    font-size: 2.25rem;
     margin-bottom: 1.25rem;
+    padding-right: .3rem;
+    font-size: 2rem;
   }
 
   input[type="image"] {
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 0 ;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
     border: 0;
   }
 
   p {
-    font-size: 1.75rem;
-    line-height: 2rem;
-    margin-bottom: 2rem;
-    padding: 0;
+    font-size: 1.54rem;
+    line-height: 1.9rem;
+    margin-bottom: 1.25rem;
+    /*padding: 0;*/
   }
 
   .idea-vote {
-    width: 15rem;
-    margin-bottom: 1rem;
+    width: 14.75rem;
+    margin-bottom: .75rem;
   }
 
   h4 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    margin-left: .5rem;
   }
 }
 
-@media screen and (max-width: 675px) {
+/*@media screen and (max-width: 675px) {
   body {
     grid-template-rows: 56.5vh 43.5vh;
   }
@@ -282,7 +286,7 @@ h4 {
     letter-spacing: .1rem;
   }
 
-  /* Lower Section */
+   Lower Section
 
   main {
     padding: 1.75rem 2rem;
@@ -324,4 +328,4 @@ h4 {
   h4 {
     font-size: 1.3rem;
   }
-}
+}*/
