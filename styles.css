@@ -3,7 +3,6 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 46vh 54vh;
   min-width: 20rem;
-  min-height: 25rem;
   font-family: "Open Sans", sans-serif;
 }
 
