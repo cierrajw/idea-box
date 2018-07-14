@@ -7,34 +7,59 @@
     <link rel="stylesheet" href="styles.css">
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:700"
-    >
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:700">
     <title>IdeaBox</title>
   </head>
   <body>
     <header>
-      <h1></h1>
-      <form>
-        <input type="" name="">
-        <input type="" name="">
-        <button></button>
-      </form>
+      <section class="add-idea">
+        <h1>idea<span>box</span></h1>
+        <form>
+          <label for="idea title">
+            <input type="text" name="title" placeholder="Title">
+          </label>
+          <label for="idea description">
+            <textarea type="text" wrap="soft" name="body" placeholder="Body"></textarea>
+          </label>
+          <button class="submit" type="submit" name="save">save</button>
+        </form>
+      </section>
     </header>
     <main>
-      <section> 
-      <input type="" name="">   
+      <section class="idea-container">
+        <label for="search">
+          <input type="text" name="search" placeholder="Search">
+        </label>
         <article>
-          <div>
-            <h2></h2>
-              <button></button>
-            <p></p>
-              <button></button>
-              <button></button>
-              <h4></h4>
+          <div class="idea-title">
+            <h2>Example Idea 1</h2>
+            <input type="image" src="images/delete.svg" alt="delete button">
+          </div>
+          <p>Tiramisu carrot cake fruitcake gingerbread bear claw powder icing tootsie roll ice cream.</p>
+          <div class="idea-vote">
+            <input type="image" src="images/upvote.svg" alt="upvote button">
+            <input type="image" src="images/downvote.svg" alt="downvote button">
+            <h4>quality<span class="idea-quality">: swill<span></h4>
+          </div>
+        </article>
+        <article>
+          <div class="idea-title">
+            <h2>Example Idea 2</h2>
+            <input type="image" src="images/delete.svg" alt="delete button">
+          </div>
+          <p>Tiramisu carrot cake fruitcake gingerbread bear claw powder icing tootsie roll ice cream.</p>
+          <div class="idea-vote">
+            <input type="image" src="images/upvote.svg" alt="upvote button">
+            <input type="image" src="images/downvote.svg" alt="downvote button">
+            <h4>quality<span class="idea-quality">: swill<span></h4>
           </div>
         </article>
       </section>
     </main>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"></script>
     <script src="script.js"></script>
   </body>
 </html>
