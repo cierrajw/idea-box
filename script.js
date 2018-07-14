@@ -5,14 +5,13 @@ var submit = $('.js-submit');
 var search = $('.js-search');
 var ideaList = $('.js-idea-container');
 var ideaCollection = $('js-idea').toArray();
+var qualities = [': swill', ': plausible', ': genius'];
 
 // Event Listeners
 titleInput.on('keyup', enableSave);
 bodyInput.on('keyup', enableSave);
 submit.on('click', checkInputs);
 ideaList.on('click', function(e){
-
-
   if(e.target.className === 'delete-button'){
     $(e.target).closest('article').remove();
   }
@@ -21,17 +20,16 @@ ideaList.on('click', function(e){
   }
   else if(e.target.className === 'downvote-button'){
     console.log('Downvote yayyyy');
-
   }
 });
-// Functions
-// Header Section
 
+// Functions
+
+// Header Section
 function enableSave() {
   var isDisabled = (!titleInput || !bodyInput);
   submit.prop('disabled', isDisabled);
-
-}
+};
 
 function checkInputs(e) {
   e.preventDefault();
@@ -40,8 +38,13 @@ function checkInputs(e) {
     alert('Please enter a title and description for your idea.');
   } else {
     makeCard();
-  }
-}
+  };
+};
+
+function clearInputs(){
+  titleInput.val("");
+  bodyInput.val("");
+};
 
 function makeCard() {
   // var titleData = titleInput.dataset.title;
@@ -51,15 +54,9 @@ function makeCard() {
   populateIdea(ideaTitle, ideaBody);
   clearInputs();
   submit.prop('disabled', true);
+};
 
-
-}
-
-function clearInputs(){
-  titleInput.val("");
-  bodyInput.val("");
-
-}
+// Main Section
 function populateIdea(ideaTitle, ideaBody) {
   var index = ideaCollection.length;
   var newArticle = `<article class="js-idea">
@@ -69,16 +66,15 @@ function populateIdea(ideaTitle, ideaBody) {
           </div>
           <p>${ideaBody}</p>
           <div class="idea-vote">
-            <button class="upvote-button js-upvote-button" aria-label="upvote button"></button>
-            <button class="downvote-button js-downvote-button" aria-label="downvote button"></button>
+            <button class="upvote-button" aria-label="upvote button"></button>
+            <button class="downvote-button" aria-label="downvote button"></button>
             <h4>quality<span class="idea-quality">: swill<span></h4>
           </div>
         </article>`;
   ideaCollection.push(newArticle);
-  ideaList.append(newArticle);
-}
+  ideaList.prepend(newArticle);
+};
 
-// Main Section
 // window.localStorage
 
 // localStorage.setItem();
