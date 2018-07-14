@@ -61,7 +61,7 @@ textarea {
   height: 2.5rem;
   width: 100%;
   border: 2px solid #939598;
-  padding: 0 0 .2rem .6rem;
+  padding-left: .6rem;
   font-size: 1.5rem;
   letter-spacing: .03rem;
   resize: none;
@@ -80,6 +80,7 @@ textarea {
   padding-bottom: .25rem;
   font-size: 1.5rem;
   letter-spacing: .05rem;
+  cursor: pointer;
 }
 
 .submit:hover {
@@ -88,6 +89,7 @@ textarea {
 }
 .submit:disabled{
   background-color: #939598;
+  cursor: default;
 }
 
 /* Lower Section */
@@ -133,6 +135,11 @@ input[type="image"] {
 	height: 1.9rem;
   padding: 0;
   border: 0;
+  cursor: pointer;
+}
+
+input[type="image"]:focus {
+  outline: 0;
 }
 
 p {
@@ -230,6 +237,7 @@ h4 {
     height: 2.25rem;
     padding: 0;
     border: 0;
+    outline: 0;
   }
 
   p {
