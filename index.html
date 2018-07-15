@@ -16,44 +16,30 @@
         <h1>idea<span>box</span></h1>
         <form>
           <label for="idea title">
-            <input type="text" name="title" placeholder="Title">
+            <input
+              class="js-title"
+              type="text"
+              data-title="title"
+              placeholder="Title">
           </label>
           <label for="idea description">
-            <textarea type="text" wrap="soft" name="body" placeholder="Body"></textarea>
+            <textarea class="js-body" type="text" wrap="soft" placeholder="Body"></textarea>
           </label>
-          <button class="submit" type="submit" name="save">save</button>
+          <input
+            class="submit js-submit"
+            type="submit"
+            value="save"
+            disabled>
         </form>
       </section>
     </header>
     <main>
-      <section class="idea-container">
+      <section class="main-container">
         <label for="search">
-          <input type="text" name="search" placeholder="Search">
+          <input class="js-search" type="text" placeholder="Search">
         </label>
-        <article>
-          <div class="idea-title">
-            <h2>Example Idea 1</h2>
-            <input type="image" src="images/delete.svg" alt="delete button">
-          </div>
-          <p>Tiramisu carrot cake fruitcake gingerbread bear claw powder icing tootsie roll ice cream.</p>
-          <div class="idea-vote">
-            <input type="image" src="images/upvote.svg" alt="upvote button">
-            <input type="image" src="images/downvote.svg" alt="downvote button">
-            <h4>quality<span class="idea-quality">: swill<span></h4>
-          </div>
-        </article>
-        <article>
-          <div class="idea-title">
-            <h2>Example Idea 2</h2>
-            <input type="image" src="images/delete.svg" alt="delete button">
-          </div>
-          <p>Tiramisu carrot cake fruitcake gingerbread bear claw powder icing tootsie roll ice cream.</p>
-          <div class="idea-vote">
-            <input type="image" src="images/upvote.svg" alt="upvote button">
-            <input type="image" src="images/downvote.svg" alt="downvote button">
-            <h4>quality<span class="idea-quality">: swill<span></h4>
-          </div>
-        </article>
+        <section class="js-idea-container">
+        <!-- javascript will append new ideas here -->
       </section>
     </main>
     <script
