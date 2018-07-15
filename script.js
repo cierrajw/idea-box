@@ -5,12 +5,14 @@ var submit = $('.js-submit');
 var search = $('.js-search');
 var ideaList = $('.js-idea-container');
 var qualities = [': swill', ': plausible', ': genius'];
+var ideaCollection = [];
 
 // Event Listeners
 titleInput.on('keyup', enableSave);
 bodyInput.on('keyup', enableSave);
 submit.on('click', checkInputs);
 ideaList.on('click', checkTarget);
+search.on('input', searchSort);
 
 // Functions
 // Header Section
@@ -42,11 +44,13 @@ function makeCard() {
   populateIdea(ideaTitle, ideaBody);
   clearInputs();
   submit.prop('disabled', true);
+  enableSearch();
 };
 
 // Main Section
+
 function populateIdea(ideaTitle, ideaBody) {
-  var ideaCollection = $('js-idea').toArray();
+  ideaCollection = $('js-idea').toArray();
   var index = ideaCollection.length;
   var newArticle =
     `<article class="js-idea">
@@ -66,6 +70,18 @@ function populateIdea(ideaTitle, ideaBody) {
   ideaList.prepend(newArticle);
 };
 
+function enableSearch(){
+  var isDisabled = (!ideaCollection.length == 0);
+  search.prop('disabled', isDisabled);
+  
+}
+
+function searchSort(){
+  console.log(typeof ideaList);
+  // var ideaArray = ideaList.makeArray();
+}
+
+
 function checkTarget(event) {
   if (event.target.className === 'delete-button') {
     $(event.target).closest('article').remove();
@@ -78,12 +94,24 @@ function checkTarget(event) {
   };
 };
 
+
+
 function upQuality(event, currQuality) {
-  for (i = 0; i < qualities.length; i++) {
-    if (qualities[i] === currQuality) {
-      $(event.target).nextAll('h4').children().text(qualities[i + 1]);
-    }
+
+    for (i = 0; i < qualities.length; i++) {
+      if (qualities[i] === currQuality) {
+        $(event.target).nextAll('h4').children().text(qualities[i + 1]);
+      }
   }
+
+  // qualities.forEach(function(quality){
+
+  //   if(quality === currQuality){
+  //     $(event.target).nextAll('h4').children().text(qualities[(quality.indexOf())+1]);
+  //   }
+  // });
+
+
 }
 
 function downQuality(event, currQuality) {
