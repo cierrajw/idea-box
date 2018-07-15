@@ -88,11 +88,11 @@ textarea {
   color: #ffffff;
 
 }
-.submit:focus{
+.submit:focus {
   outline: 0;
 }
 
-.submit:disabled{
+.submit:disabled {
   background-color: #939598;
   cursor: default;
 }
@@ -145,35 +145,30 @@ button {
 }
 
 button:focus {
-
   outline: 0;
 }
 
 .delete-button {
-
-background-image: url('images/delete.svg');
-
+  background-image: url('images/delete.svg');
 }
-.delete-button:hover{
+
+.delete-button:hover {
   background-image: url('images/delete-hover.svg');
 }
 
 .upvote-button {
-
-background-image: url('images/upvote.svg');
-
+  background-image: url('images/upvote.svg');
 }
-.upvote-button:hover{
+
+.upvote-button:hover {
   background-image: url('images/upvote-hover.svg');
 }
 
 .downvote-button {
-
-background-image: url('images/downvote.svg');
-
-
+  background-image: url('images/downvote.svg');
 }
-.downvote-button:hover{
+
+.downvote-button:hover {
   background-image: url('images/downvote-hover.svg');
 }
 
