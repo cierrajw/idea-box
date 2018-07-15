@@ -13,7 +13,6 @@ submit.on('click', checkInputs);
 ideaList.on('click', checkTarget);
 
 // Functions
-
 // Header Section
 function enableSave() {
   var isDisabled = (!titleInput || !bodyInput);
@@ -22,7 +21,7 @@ function enableSave() {
 
 function checkInputs(event) {
   event.preventDefault();
-  if (!titleInput.val() || !bodyInput.val()) {
+  if (!titleInput.val().trim() || !bodyInput.val().trim()) {
     alert('Please enter a title and description for your idea.');
     return;
   } else {
@@ -38,8 +37,8 @@ function clearInputs() {
 function makeCard() {
   // var titleData = titleInput.dataset.title;
   // console.log(`This is the title: ${titleData}`);
-  var ideaTitle = titleInput.val();
-  var ideaBody = bodyInput.val();
+  var ideaTitle = titleInput.val().trim();
+  var ideaBody = bodyInput.val().trim();
   populateIdea(ideaTitle, ideaBody);
   clearInputs();
   submit.prop('disabled', true);
@@ -71,12 +70,29 @@ function checkTarget(event) {
   if (event.target.className === 'delete-button') {
     $(event.target).closest('article').remove();
   } else if (event.target.className === 'upvote-button') {
-    console.log('Upvote yayyyy');
+    var currQuality = $(event.target).nextAll('h4').children().text();
+    upQuality(event, currQuality);
   } else if (event.target.className === 'downvote-button') {
-    console.log('Downvote yayyyy');
+    var currQuality = $(event.target).nextAll('h4').children().text();
+    downQuality(event, currQuality);
   };
 };
 
+function upQuality(event, currQuality) {
+  for (i = 0; i < qualities.length; i++) {
+    if (qualities[i] === currQuality) {
+      $(event.target).nextAll('h4').children().text(qualities[i + 1]);
+    }
+  }
+}
+
+function downQuality(event, currQuality) {
+  for (i = 0; i < qualities.length; i++) {
+    if (qualities[i] === currQuality) {
+      $(event.target).nextAll('h4').children().text(qualities[i - 1]);
+    }
+  }
+}
 // window.localStorage
 
 // localStorage.setItem();
