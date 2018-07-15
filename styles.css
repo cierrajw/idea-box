@@ -141,7 +141,6 @@ button {
   padding: 0;
   border: 0;
   cursor: pointer;
-
 }
 
 button:focus {
@@ -292,16 +291,20 @@ h4 {
   body {
     grid-template-rows: 56.5vh 43.5vh;
   }
+
   .add-idea {
     padding: .5rem;
   }
+
   h1 {
     font-size: 3rem;
   }
+
   form {
     height: 73%;
     padding-bottom: .3rem;
   }
+
   input {
     height: 3.25rem;
     border: 2px solid #939598;
@@ -309,16 +312,19 @@ h4 {
     font-size: 2rem;
     letter-spacing: .02rem;
   }
+
   textarea {
     height: 8.75rem;
     font-size: 2rem;
   }
+
   .submit {
     height: 4rem;
     padding-bottom: .4rem;
     font-size: 2rem;
     letter-spacing: .1rem;
   }
+
    Lower Section
   main {
     padding: 1.75rem 2rem;
@@ -326,30 +332,36 @@ h4 {
   input[name='search'] {
     margin-bottom: 2.9rem;
   }
+
   article {
     padding: 1rem .1rem;
     margin-bottom: 1rem;
   }
+
   .idea-title {
     font-size: 2.25rem;
     margin-bottom: 1.25rem;
   }
+
   input[type="image"] {
     width: 2.5rem;
     height: 2.5rem;
     padding: 0 ;
     border: 0;
   }
+
   p {
     font-size: 1.75rem;
     line-height: 2rem;
     margin-bottom: 2rem;
     padding: 0;
   }
+
   .idea-vote {
     width: 15rem;
     margin-bottom: 1rem;
   }
+
   h4 {
     font-size: 1.3rem;
   }
