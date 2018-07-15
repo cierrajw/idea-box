@@ -70,13 +70,29 @@ function checkTarget(event) {
   if (event.target.className === 'delete-button') {
     $(event.target).closest('article').remove();
   } else if (event.target.className === 'upvote-button') {
-    debugger;
-    $(event.target).nextAll('h4').next().text(': radical');
+    var currQuality = $(event.target).nextAll('h4').children().text();
+    upQuality(event, currQuality);
   } else if (event.target.className === 'downvote-button') {
-    console.log('Downvote yayyyy');
+    var currQuality = $(event.target).nextAll('h4').children().text();
+    downQuality(event, currQuality);
   };
 };
 
+function upQuality(event, currQuality) {
+  for (i = 0; i < qualities.length; i++) {
+    if (qualities[i] === currQuality) {
+      $(event.target).nextAll('h4').children().text(qualities[i + 1]);
+    }
+  }
+}
+
+function downQuality(event, currQuality) {
+  for (i = 0; i < qualities.length; i++) {
+    if (qualities[i] === currQuality) {
+      $(event.target).nextAll('h4').children().text(qualities[i - 1]);
+    }
+  }
+}
 // window.localStorage
 
 // localStorage.setItem();
