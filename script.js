@@ -71,13 +71,22 @@ function populateIdea(ideaTitle, ideaBody) {
 };
 
 function enableSearch(){
-  var isDisabled = (!ideaCollection.length == 0);
+  var isDisabled = (!ideaCollection);
   search.prop('disabled', isDisabled);
-  
 }
 
 function searchSort(){
-  console.log(typeof ideaList);
+  var filteredIdeas = ideaCollection.filter(function(idea){
+    var terms = search.val();
+    //If the idea article contains anything matching the terms, 
+    //then it should be included in the newly created filterIdeas array
+    //Use the new array to populate the ideaList
+    $(`article:contains(${terms})`);
+
+
+  });
+  console.log(filteredIdeas);
+
   // var ideaArray = ideaList.makeArray();
 }
 
@@ -85,6 +94,13 @@ function searchSort(){
 function checkTarget(event) {
   if (event.target.className === 'delete-button') {
     $(event.target).closest('article').remove();
+
+    //GET HALP:
+    // if (ideaCollection.length === 0){
+    //   search.prop('disabled', true);
+    // }
+    
+
   } else if (event.target.className === 'upvote-button') {
     var currQuality = $(event.target).nextAll('h4').children().text();
     upQuality(event, currQuality);
