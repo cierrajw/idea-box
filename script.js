@@ -50,10 +50,10 @@ function makeCard() {
 // Main Section
 
 function populateIdea(ideaTitle, ideaBody) {
-  ideaCollection = $('js-idea').toArray();
+
   var index = ideaCollection.length;
   var newArticle =
-    `<article class="js-idea">
+    `<article class="js-idea" data-id="${index}">
       <div class="idea-title" id="${index}"">
         <h2>${ideaTitle}</h2>
         <button class="delete-button" aria-label="delete button"></button>
@@ -67,7 +67,15 @@ function populateIdea(ideaTitle, ideaBody) {
     </article>`;
 
   ideaCollection.push(newArticle);
+  console.log("ideaCollection length:" + ideaCollection.length);
   ideaList.prepend(newArticle);
+
+  //stringify the new article to be placed in local storage
+  //set the newly created article in local storage
+  localStorage.setItem(`article-${index}`, JSON.stringify(newArticle));
+  
+
+
 };
 
 function enableSearch(){
