@@ -5,19 +5,43 @@ var submit = $('.js-submit');
 var search = $('.js-search');
 var ideaList = $('.js-idea-container');
 var qualities = [': swill', ': plausible', ': genius'];
+// var ideaCollection = [];
+// var ideaCounter = 0;
 
 // Event Listeners
+$(document).ready(getLocalStorage);
 titleInput.on('keyup', enableSave);
 bodyInput.on('keyup', enableSave);
 submit.on('click', checkInputs);
 ideaList.on('click', checkTarget);
+search.on('input', searchSort);
+
 
 // Functions
+
 // Header Section
 function enableSave() {
   var isDisabled = (!titleInput || !bodyInput);
   submit.prop('disabled', isDisabled);
 };
+
+function getLocalStorage(){
+
+//localStorage.length indicates how many key value pairs we have to get 
+
+for (var i = 0; i < localStorage.length; i++){
+  var parsedItem = JSON.parse(localStorage.getItem(localStorage.key(i)));
+
+    ideaList.prepend(parsedItem);
+
+    // ideaCollection.push(parsedItem);
+}
+
+//get all articles from local storage and parse them.
+//we need to append the parsed articles to the ideaList
+//sort/append them in descending order
+
+}
 
 function checkInputs(event) {
   event.preventDefault();
@@ -35,21 +59,22 @@ function clearInputs() {
 };
 
 function makeCard() {
-  // var titleData = titleInput.dataset.title;
-  // console.log(`This is the title: ${titleData}`);
   var ideaTitle = titleInput.val().trim();
   var ideaBody = bodyInput.val().trim();
   populateIdea(ideaTitle, ideaBody);
   clearInputs();
   submit.prop('disabled', true);
+  enableSearch();
 };
 
 // Main Section
+
 function populateIdea(ideaTitle, ideaBody) {
-  var ideaCollection = $('js-idea').toArray();
-  var index = ideaCollection.length;
+
+  var index = localStorage.length;
+
   var newArticle =
-    `<article class="js-idea">
+    `<article class="js-idea" data-id="${index}">
       <div class="idea-title" id="${index}"">
         <h2>${ideaTitle}</h2>
         <button class="delete-button" aria-label="delete button"></button>
@@ -62,13 +87,46 @@ function populateIdea(ideaTitle, ideaBody) {
       </div>
     </article>`;
 
-  ideaCollection.push(newArticle);
   ideaList.prepend(newArticle);
+
+  // ideaCollection.push(newArticle);
+
+  //stringify the new article to be placed in local storage
+  //set the newly created article in local storage
+  localStorage.setItem(`article-${index}`, JSON.stringify(newArticle));
+
 };
+
+function enableSearch(){
+  var isDisabled = (!localStorage.length);
+  search.prop('disabled', isDisabled);
+}
+
+function searchSort(){
+  var filteredIdeas = ideaCollection.filter(function(idea){
+    var terms = search.val();
+    //If the idea article contains anything matching the terms, 
+    //then it should be included in the newly created filterIdeas array
+    //Use the new array to populate the ideaList
+    $(`article:contains(${terms})`);
+
+
+  });
+  console.log(filteredIdeas);
+
+}
+
 
 function checkTarget(event) {
   if (event.target.className === 'delete-button') {
     $(event.target).closest('article').remove();
+
+    //GET HALP:
+    // if (ideaCollection.length === 0){
+    //   search.prop('disabled', true);
+    // }
+    
+
   } else if (event.target.className === 'upvote-button') {
     var currQuality = $(event.target).nextAll('h4').children().text();
     upQuality(event, currQuality);
@@ -79,11 +137,21 @@ function checkTarget(event) {
 };
 
 function upQuality(event, currQuality) {
-  for (i = 0; i < qualities.length; i++) {
-    if (qualities[i] === currQuality) {
-      $(event.target).nextAll('h4').children().text(qualities[i + 1]);
-    }
+
+    for (i = 0; i < qualities.length; i++) {
+      if (qualities[i] === currQuality) {
+        $(event.target).nextAll('h4').children().text(qualities[i + 1]);
+      }
   }
+
+  // qualities.forEach(function(quality){
+
+  //   if(quality === currQuality){
+  //     $(event.target).nextAll('h4').children().text(qualities[(quality.indexOf())+1]);
+  //   }
+  // });
+
+
 }
 
 function downQuality(event, currQuality) {
@@ -93,8 +161,3 @@ function downQuality(event, currQuality) {
     }
   }
 }
-// window.localStorage
-
-// localStorage.setItem();
-
-// localStorage.remoteItem();
