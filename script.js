@@ -59,11 +59,11 @@ function populateIdea(ideaTitle, ideaBody) {
   var index = localStorage.length;
   var newArticle =
     `<article class="js-idea" data-id="${index}">
-      <div class="idea-title">
+      <div class="idea-title" contenteditable="true">
         <h2>${ideaTitle}</h2>
         <button class="delete-button" aria-label="delete button"></button>
       </div>
-      <p>${ideaBody}</p>
+      <p contenteditable="true">${ideaBody}</p>
       <div class="idea-vote">
         <button class="upvote-button" aria-label="upvote button"></button>
         <button class="downvote-button" aria-label="downvote button"></button>
