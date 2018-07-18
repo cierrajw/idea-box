@@ -12,8 +12,8 @@ titleInput.on('keyup', enableSave);
 bodyInput.on('keyup', enableSave);
 submit.on('click', checkInputs);
 ideaList.on('click', checkTarget);
+ideaList.on('input', resetItem);
 search.on('input', searchSort);
-
 
 // Functions
 // Header Section
@@ -54,16 +54,17 @@ function makeCard() {
 };
 
 // Main Section
-
+// add event listener for .on('change', setItem)
+// need user to be able to submit via enter or clicking away from the form
 function populateIdea(ideaTitle, ideaBody) {
   var index = localStorage.length;
   var newArticle =
     `<article class="js-idea" data-id="${index}">
-      <div class="idea-title" contenteditable="true">
-        <h2>${ideaTitle}</h2>
+      <div class="idea-title">
+        <h2 contenteditable>${ideaTitle}</h2>
         <button class="delete-button" aria-label="delete button"></button>
       </div>
-      <p contenteditable="true">${ideaBody}</p>
+      <p contenteditable>${ideaBody}</p>
       <div class="idea-vote">
         <button class="upvote-button" aria-label="upvote button"></button>
         <button class="downvote-button" aria-label="downvote button"></button>
@@ -73,6 +74,18 @@ function populateIdea(ideaTitle, ideaBody) {
   ideaList.prepend(newArticle);
   localStorage.setItem(`article-${index}`, JSON.stringify(newArticle));
 };
+
+function resetItem(event) {
+  // var card = $(event.target).closest('article').html();
+  // debugger;
+  // localStorage.setItem(`article-${card.prop('dataset').id}`, JSON.stringify($(card));
+
+  var card = $(event.target).closest('article');
+  var html = $(event.target).closest('article')[0];
+
+  debugger;
+  localStorage.setItem(`article-${card.prop('dataset').id}`, JSON.stringify(html));
+}
 
 function enableSearch() {
   var isDisabled = (!localStorage.length);
@@ -95,18 +108,23 @@ function checkTarget(event) {
     var card = $(event.target).closest('article');
     card.remove();
     localStorage.removeItem(`article-${card.prop('dataset').id}`);
-    //GET HALP:
-    // if (ideaCollection.length === 0){
-    //   search.prop('disabled', true);
-    // }
-
+    if (!localStorage.length){
+      search.val('');
+      search.prop('disabled', true);
+    }
   } else if (event.target.className === 'upvote-button') {
     var currQuality = $(event.target).nextAll('h4').children().text();
     upQuality(event, currQuality);
   } else if (event.target.className === 'downvote-button') {
     var currQuality = $(event.target).nextAll('h4').children().text();
     downQuality(event, currQuality);
-  };
+  // } else if (event.target.tagName.toLowerCase() === 'h2' || event.target.tagName.toLowerCase() === 'p') {
+  //   var card = $(event.target).closest('article');
+  //   var html = $(event.target).closest('article')[0];
+
+  //   debugger;
+  //   localStorage.setItem(`article-${card.prop('dataset').id}`, JSON.stringify(html));
+  }
 };
 
 function upQuality(event, currQuality) {
