@@ -54,8 +54,7 @@ function makeCard() {
 };
 
 // Main Section
-// add event listener for .on('change', setItem)
-// need user to be able to submit via enter or clicking away from the form
+// need user to be able to submit via enter or clicking away
 function populateIdea(ideaTitle, ideaBody) {
   var index = localStorage.length;
   var newArticle =
@@ -76,15 +75,8 @@ function populateIdea(ideaTitle, ideaBody) {
 };
 
 function resetItem(event) {
-  // var card = $(event.target).closest('article').html();
-  // debugger;
-  // localStorage.setItem(`article-${card.prop('dataset').id}`, JSON.stringify($(card));
-
   var card = $(event.target).closest('article');
-  var html = $(event.target).closest('article')[0];
-
-  debugger;
-  localStorage.setItem(`article-${card.prop('dataset').id}`, JSON.stringify(html));
+  localStorage.setItem(`article-${card.prop('dataset').id}`, JSON.stringify(card.parent().html()));
 }
 
 function enableSearch() {
@@ -118,12 +110,6 @@ function checkTarget(event) {
   } else if (event.target.className === 'downvote-button') {
     var currQuality = $(event.target).nextAll('h4').children().text();
     downQuality(event, currQuality);
-  // } else if (event.target.tagName.toLowerCase() === 'h2' || event.target.tagName.toLowerCase() === 'p') {
-  //   var card = $(event.target).closest('article');
-  //   var html = $(event.target).closest('article')[0];
-
-  //   debugger;
-  //   localStorage.setItem(`article-${card.prop('dataset').id}`, JSON.stringify(html));
   }
 };
 
