@@ -5,8 +5,6 @@ var submit = $('.js-submit');
 var search = $('.js-search');
 var ideaList = $('.js-idea-container');
 var qualities = [': swill', ': plausible', ': genius'];
-// var ideaCollection = [];
-// var ideaCounter = 0;
 
 // Event Listeners
 $(document).ready(getLocalStorage);
@@ -18,29 +16,17 @@ search.on('input', searchSort);
 
 
 // Functions
-
 // Header Section
 function enableSave() {
   var isDisabled = (!titleInput || !bodyInput);
   submit.prop('disabled', isDisabled);
 };
 
-function getLocalStorage(){
-
-//localStorage.length indicates how many key value pairs we have to get 
-
-for (var i = 0; i < localStorage.length; i++){
-  var parsedItem = JSON.parse(localStorage.getItem(localStorage.key(i)));
-
+function getLocalStorage() {
+  for (var i = 0; i < localStorage.length; i++) {
+    var parsedItem = JSON.parse(localStorage.getItem(localStorage.key(i)));
     ideaList.prepend(parsedItem);
-
-    // ideaCollection.push(parsedItem);
-}
-
-//get all articles from local storage and parse them.
-//we need to append the parsed articles to the ideaList
-//sort/append them in descending order
-
+  }
 }
 
 function checkInputs(event) {
@@ -70,12 +56,10 @@ function makeCard() {
 // Main Section
 
 function populateIdea(ideaTitle, ideaBody) {
-
   var index = localStorage.length;
-
   var newArticle =
     `<article class="js-idea" data-id="${index}">
-      <div class="idea-title" id="${index}"">
+      <div class="idea-title">
         <h2>${ideaTitle}</h2>
         <button class="delete-button" aria-label="delete button"></button>
       </div>
@@ -86,46 +70,35 @@ function populateIdea(ideaTitle, ideaBody) {
         <h4>quality<span class="idea-quality">: swill<span></h4>
       </div>
     </article>`;
-
   ideaList.prepend(newArticle);
-
-  // ideaCollection.push(newArticle);
-
-  //stringify the new article to be placed in local storage
-  //set the newly created article in local storage
   localStorage.setItem(`article-${index}`, JSON.stringify(newArticle));
-
 };
 
-function enableSearch(){
+function enableSearch() {
   var isDisabled = (!localStorage.length);
   search.prop('disabled', isDisabled);
-}
+};
 
-function searchSort(){
+function searchSort() {
   var filteredIdeas = ideaCollection.filter(function(idea){
     var terms = search.val();
-    //If the idea article contains anything matching the terms, 
+    //If the idea article contains anything matching the terms,
     //then it should be included in the newly created filterIdeas array
     //Use the new array to populate the ideaList
     $(`article:contains(${terms})`);
-
-
   });
   console.log(filteredIdeas);
-
 }
-
 
 function checkTarget(event) {
   if (event.target.className === 'delete-button') {
-    $(event.target).closest('article').remove();
-
+    var card = $(event.target).closest('article');
+    card.remove();
+    localStorage.removeItem(`article-${card.prop('dataset').id}`);
     //GET HALP:
     // if (ideaCollection.length === 0){
     //   search.prop('disabled', true);
     // }
-    
 
   } else if (event.target.className === 'upvote-button') {
     var currQuality = $(event.target).nextAll('h4').children().text();
@@ -137,21 +110,15 @@ function checkTarget(event) {
 };
 
 function upQuality(event, currQuality) {
-
-    for (i = 0; i < qualities.length; i++) {
-      if (qualities[i] === currQuality) {
-        $(event.target).nextAll('h4').children().text(qualities[i + 1]);
-      }
+  // nice to have - persistent qualities
+  // var index = $(event.target.id);
+  // console.log(index);
+  for (i = 0; i < qualities.length; i++) {
+    if (qualities[i] === currQuality) {
+      $(event.target).nextAll('h4').children().text(qualities[i + 1]);
+    }
   }
-
-  // qualities.forEach(function(quality){
-
-  //   if(quality === currQuality){
-  //     $(event.target).nextAll('h4').children().text(qualities[(quality.indexOf())+1]);
-  //   }
-  // });
-
-
+  // localStorage.setItem(`article-${index}`, JSON.stringify(newArticle));
 }
 
 function downQuality(event, currQuality) {
