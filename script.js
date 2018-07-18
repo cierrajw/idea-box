@@ -23,6 +23,7 @@ function enableSave() {
 };
 
 function getLocalStorage() {
+  // debugger;
   for (var i = 0; i < localStorage.length; i++) {
     var parsedItem = JSON.parse(localStorage.getItem(localStorage.key(i)));
     ideaList.prepend(parsedItem);
@@ -76,7 +77,9 @@ function populateIdea(ideaTitle, ideaBody) {
 
 function resetItem(event) {
   var card = $(event.target).closest('article');
-  localStorage.setItem(`article-${card.prop('dataset').id}`, JSON.stringify(card.parent().html()));
+  var ideaId = card.prop('dataset').id;
+  var articleHTML = card.prop('outerHTML');
+  localStorage.setItem(`article-${ideaId}`, JSON.stringify(articleHTML));
 }
 
 function enableSearch() {
@@ -115,14 +118,12 @@ function checkTarget(event) {
 
 function upQuality(event, currQuality) {
   // nice to have - persistent qualities
-  // var index = $(event.target.id);
-  // console.log(index);
   for (i = 0; i < qualities.length; i++) {
     if (qualities[i] === currQuality) {
       $(event.target).nextAll('h4').children().text(qualities[i + 1]);
     }
   }
-  // localStorage.setItem(`article-${index}`, JSON.stringify(newArticle));
+  resetItem(event);
 }
 
 function downQuality(event, currQuality) {
@@ -131,4 +132,5 @@ function downQuality(event, currQuality) {
       $(event.target).nextAll('h4').children().text(qualities[i - 1]);
     }
   }
+  resetItem(event);
 }
