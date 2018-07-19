@@ -24,10 +24,10 @@ function enableSave() {
 
 function getLocalStorage() {
   for (var i = 0; i < localStorage.length; i++) {
-    var parsedItem = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    var parsedItem = JSON.parse(localStorage.getItem(`idea-${i}`));
     ideaList.prepend(parsedItem);
-  }
-}
+  };
+};
 
 function checkInputs(event) {
   event.preventDefault();
@@ -54,8 +54,6 @@ function makeCard() {
 };
 
 // Main Section
-// add event listener for .on('change', setItem)
-// need user to be able to submit via enter or clicking away from the form
 function populateIdea(ideaTitle, ideaBody) {
   var index = localStorage.length;
   var newArticle =
@@ -72,20 +70,15 @@ function populateIdea(ideaTitle, ideaBody) {
       </div>
     </article>`;
   ideaList.prepend(newArticle);
-  localStorage.setItem(`article-${index}`, JSON.stringify(newArticle));
+  localStorage.setItem(`idea-${index}`, JSON.stringify(newArticle));
 };
 
 function resetItem(event) {
-  // var card = $(event.target).closest('article').html();
-  // debugger;
-  // localStorage.setItem(`article-${card.prop('dataset').id}`, JSON.stringify($(card));
-
   var card = $(event.target).closest('article');
-  var html = $(event.target).closest('article')[0];
-
-  debugger;
-  localStorage.setItem(`article-${card.prop('dataset').id}`, JSON.stringify(html));
-}
+  var ideaId = card.prop('dataset').id;
+  var articleHtml = card.prop('outerHTML');
+  localStorage.setItem(`idea-${ideaId}`, JSON.stringify(articleHtml));
+};
 
 function enableSearch() {
   var isDisabled = (!localStorage.length);
@@ -93,7 +86,7 @@ function enableSearch() {
 };
 
 function searchSort() {
-  var filteredIdeas = ideaCollection.filter(function(idea){
+  var filteredIdeas = ideaCollection.filter(function(idea) {
     var terms = search.val();
     //If the idea article contains anything matching the terms,
     //then it should be included in the newly created filterIdeas array
@@ -101,48 +94,64 @@ function searchSort() {
     $(`article:contains(${terms})`);
   });
   console.log(filteredIdeas);
-}
+};
 
 function checkTarget(event) {
   if (event.target.className === 'delete-button') {
-    var card = $(event.target).closest('article');
-    card.remove();
-    localStorage.removeItem(`article-${card.prop('dataset').id}`);
-    if (!localStorage.length){
-      search.val('');
-      search.prop('disabled', true);
-    }
+    deleteCard(event);
   } else if (event.target.className === 'upvote-button') {
     var currQuality = $(event.target).nextAll('h4').children().text();
     upQuality(event, currQuality);
   } else if (event.target.className === 'downvote-button') {
     var currQuality = $(event.target).nextAll('h4').children().text();
     downQuality(event, currQuality);
-  // } else if (event.target.tagName.toLowerCase() === 'h2' || event.target.tagName.toLowerCase() === 'p') {
-  //   var card = $(event.target).closest('article');
-  //   var html = $(event.target).closest('article')[0];
+  };
+};
 
-  //   debugger;
-  //   localStorage.setItem(`article-${card.prop('dataset').id}`, JSON.stringify(html));
-  }
+function deleteCard(event) {
+  var card = $(event.target).closest('article');
+  var deletedId = card.prop('dataset').id;
+  var nextArticles = card.prevAll();
+  card.remove();
+  localStorage.removeItem(`idea-${deletedId}`);
+  resetIds(nextArticles);
+  if (!localStorage.length) {
+    clearSearch();
+  };
+};
+
+function resetIds(nextArticles) {
+  nextArticles.each(function() {
+    var currentId = parseInt($(this).prop('dataset').id);
+    var previousId = currentId - 1;
+    $(this).prop('dataset').id = previousId;
+    var articleHtml = $(this).prop('outerHTML');
+    localStorage.setItem(`idea-${previousId}`, JSON.stringify(articleHtml));
+    localStorage.removeItem(`idea-${currentId}`);
+  });
+};
+
+function clearSearch() {
+  search.val('');
+  search.prop('disabled', true);
 };
 
 function upQuality(event, currQuality) {
-  // nice to have - persistent qualities
-  // var index = $(event.target.id);
-  // console.log(index);
-  for (i = 0; i < qualities.length; i++) {
+  for (var i = 0; i < qualities.length; i++) {
     if (qualities[i] === currQuality) {
       $(event.target).nextAll('h4').children().text(qualities[i + 1]);
-    }
-  }
-  // localStorage.setItem(`article-${index}`, JSON.stringify(newArticle));
-}
+    };
+  };
+
+  resetItem(event);
+};
 
 function downQuality(event, currQuality) {
-  for (i = 0; i < qualities.length; i++) {
+  for (var i = 0; i < qualities.length; i++) {
     if (qualities[i] === currQuality) {
       $(event.target).nextAll('h4').children().text(qualities[i - 1]);
-    }
-  }
-}
+    };
+  };
+
+  resetItem(event);
+};
