@@ -198,11 +198,25 @@ h4 {
 }
 
 /* Media Queries */
+
 /* Phone */
 
 @media screen and (max-width: 500px) {
   body {
     grid-template-rows: 58vh 42vh;
+  }
+
+  .title h1{
+    color: red;
+  }
+
+  .main-container {
+  width: 95%;
+  padding: 1rem;
+  }
+
+  h2.title {
+  font-size: .8em;
   }
 
   .add-idea {
