@@ -70,6 +70,7 @@ function populateIdea(ideaTitle, ideaBody) {
         <h4>quality<span class="idea-quality">: swill<span></h4>
       </div>
     </article>`;
+
   ideaList.prepend(newArticle);
   localStorage.setItem(`idea-${index}`, JSON.stringify(newArticle));
 };
