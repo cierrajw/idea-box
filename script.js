@@ -8,12 +8,13 @@ var qualities = [': swill', ': plausible', ': genius'];
 
 // Event Listeners
 $(document).ready(getLocalStorage);
+$(document).ready(enableSearch);
 titleInput.on('keyup', enableSave);
 bodyInput.on('keyup', enableSave);
 submit.on('click', checkInputs);
 ideaList.on('click', checkTarget);
 ideaList.on('input', resetItem);
-search.on('input', searchSort);
+search.on('input', searchFilter);
 
 // Functions
 // Header Section
@@ -85,15 +86,18 @@ function enableSearch() {
   search.prop('disabled', isDisabled);
 };
 
-function searchSort() {
-  var filteredIdeas = ideaCollection.filter(function(idea) {
-    var terms = search.val();
-    //If the idea article contains anything matching the terms,
-    //then it should be included in the newly created filterIdeas array
-    //Use the new array to populate the ideaList
-    $(`article:contains(${terms})`);
+function searchFilter() {
+  var ideas = $('article');
+  ideas.filter(function(index) {
+    var terms = search.val().toLowerCase();
+    var title = $(this).find('h2').text().toLowerCase();
+    var body = $(this).children('p').text().toLowerCase();
+    if (title.includes(terms) || body.includes(terms)) {
+      $(this).show();
+    } else {
+      $(this).hide();
+    }
   });
-  console.log(filteredIdeas);
 };
 
 function checkTarget(event) {
