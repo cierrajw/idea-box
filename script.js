@@ -60,7 +60,7 @@ function populateIdea(ideaTitle, ideaBody) {
   var newArticle =
     `<article class="js-idea" data-id="${index}">
       <div class="idea-title">
-        <h2 contenteditable>${ideaTitle}</h2>
+        <h2 class="title" contenteditable>${ideaTitle}</h2>
         <button class="delete-button" aria-label="delete button"></button>
       </div>
       <p contenteditable>${ideaBody}</p>
@@ -96,7 +96,7 @@ function searchFilter() {
       $(this).show();
     } else {
       $(this).hide();
-    }
+    };
   });
 };
 
