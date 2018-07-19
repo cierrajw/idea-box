@@ -76,10 +76,15 @@ function populateIdea(ideaTitle, ideaBody) {
 };
 
 function resetItem(event) {
-  var card = $(event.target).closest('article');
-  var ideaId = card.prop('dataset').id;
-  var articleHtml = card.prop('outerHTML');
-  localStorage.setItem(`idea-${ideaId}`, JSON.stringify(articleHtml));
+  if ($(event.target).text() === '') {
+    alert('Please enter a title and description for your idea.');
+    return;
+  } else {
+    var card = $(event.target).closest('article');
+    var ideaId = card.prop('dataset').id;
+    var articleHtml = card.prop('outerHTML');
+    localStorage.setItem(`idea-${ideaId}`, JSON.stringify(articleHtml));
+  }
 };
 
 function enableSearch() {
