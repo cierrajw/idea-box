@@ -23,13 +23,6 @@ function enableSave() {
   submit.prop('disabled', isDisabled);
 };
 
-function getLocalStorage() {
-  for (var i = 0; i < localStorage.length; i++) {
-    var parsedItem = JSON.parse(localStorage.getItem(`idea-${i}`));
-    ideaList.prepend(parsedItem);
-  };
-};
-
 function checkInputs(event) {
   event.preventDefault();
   if (!titleInput.val().trim() || !bodyInput.val().trim()) {
@@ -55,6 +48,18 @@ function makeCard() {
 };
 
 // Main Section
+function getLocalStorage() {
+  for (var i = 0; i < localStorage.length; i++) {
+    var parsedItem = JSON.parse(localStorage.getItem(`idea-${i}`));
+    ideaList.prepend(parsedItem);
+  };
+};
+
+function enableSearch() {
+  var isDisabled = (!localStorage.length);
+  search.prop('disabled', isDisabled);
+};
+
 function populateIdea(ideaTitle, ideaBody) {
   var index = localStorage.length;
   var newArticle =
@@ -85,11 +90,6 @@ function resetItem(event) {
     var articleHtml = card.prop('outerHTML');
     localStorage.setItem(`idea-${ideaId}`, JSON.stringify(articleHtml));
   }
-};
-
-function enableSearch() {
-  var isDisabled = (!localStorage.length);
-  search.prop('disabled', isDisabled);
 };
 
 function searchFilter() {
